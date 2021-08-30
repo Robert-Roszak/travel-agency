@@ -4,7 +4,6 @@ export const getAllFilters = ({filters}) => filters;
 
 /* ACTIONS */
 
-
 // action name creator
 const reducerName = 'filters';
 const createActionName = name => `app/${reducerName}/${name}`;
@@ -43,7 +42,6 @@ export default function reducer(statePart = [], action = {}) {
       };
 
     case CHANGE_DURATION:
-      //console.log('duration? wtdasdfjksdhfbkjldsfbjhdsgbdjfhgjkfdgjhdfj.kgh;kdjf;sdj', action.payload);
       return {
         ...statePart,
         duration: action.payload,
