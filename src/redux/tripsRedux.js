@@ -5,44 +5,34 @@ export const getAllTrips = ({trips}) => trips;
 export const getFilteredTrips = ({trips, filters}) => {
   let output = trips;
 
-  // filter by search phrase
+  // filter by search phrase - DONE
   if(filters.searchPhrase){
     const pattern = new RegExp(filters.searchPhrase, 'i');
     output = output.filter(trip => pattern.test(trip.name));
   }
 
-  // TODO - filter by duration
+  // TODO - filter by duration - DONE
+  output = output.filter(trip => trip.days >= filters.duration.from && trip.days <= filters.duration.to);
 
   // TODO - filter by tags,
-  console.log(output);
-  console.log(filters);
-  if (filters.tags) {
+  // poki co zwraca tylko wycieczki z jednym tagiem, jesli wycieczka ma wiecej - nie pokazuje jej wcale
+  if (!filters.tags.length == 0) {
+    console.log('zawartosc filters.tags: ', filters.tags);
     output = output.filter(trip => trip.tags.every(tag => filters.tags.includes(tag)));
   }
 
   console.log('output: ', output);
 
-  // TODO - sort by cost descending (most expensive goes first)
-  /* for (let trip of output) {
-    console.log('trip: ', trip);
-    console.log('each trip cost: ', trip.cost);
-  } */
-
-
-  var byCost = output.slice(0);
-  byCost.sort(function(a,b) {
-    a.cost = a.cost.substring(1);
-    b.cost = b.cost.substring(1);
-    a.cost = parseInt(a.cost);
-    b.cost = parseInt(b.cost);
-    console.log('a.cost: ', a.cost);
-    console.log('b.cost: ', b.cost);
-    console.log('a.cost - b.cost: ', a.cost - b.cost);
-    return a.cost - b.cost;
+  // TODO - sort by cost descending (most expensive goes first) - DONE
+  output.sort(function(a, b) {
+    let aCost = a.cost;
+    let bCost = b.cost;
+    aCost = aCost.replace('$', '');
+    bCost = bCost.replace('$', '');
+    aCost = parseFloat(aCost.replace(/,/g, ''), 10);
+    bCost = parseFloat(bCost.replace(/,/g, ''), 10);
+    return bCost - aCost;
   });
-  console.log('by cost:');
-  console.log(byCost);
-
 
   return output;
 };
