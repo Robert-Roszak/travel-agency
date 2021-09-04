@@ -16,4 +16,5 @@ OrderSummary.propTypes = {
   tripCost: PropTypes.string,
   options: PropTypes.object,
 };
+
 export default OrderSummary;

@@ -15,13 +15,9 @@ export const getFilteredTrips = ({trips, filters}) => {
   output = output.filter(trip => trip.days >= filters.duration.from && trip.days <= filters.duration.to);
 
   // TODO - filter by tags,
-  // poki co zwraca tylko wycieczki z jednym tagiem, jesli wycieczka ma wiecej - nie pokazuje jej wcale
   if (!filters.tags.length == 0) {
-    console.log('zawartosc filters.tags: ', filters.tags);
-    output = output.filter(trip => trip.tags.every(tag => filters.tags.includes(tag)));
+    for (let tag of filters.tags) output = output.filter(trip => trip.tags.includes(tag));
   }
-
-  console.log('output: ', output);
 
   // TODO - sort by cost descending (most expensive goes first) - DONE
   output.sort(function(a, b) {
@@ -33,20 +29,18 @@ export const getFilteredTrips = ({trips, filters}) => {
     bCost = parseFloat(bCost.replace(/,/g, ''), 10);
     return bCost - aCost;
   });
-
+  //console.log('output: ', output);
   return output;
 };
 
 export const getTripById = ({trips}, tripId) => {
   const filtered = trips.filter(trip => trip.id == tripId);
-
   console.log('filtering trips by tripId:', tripId, filtered);
   return filtered.length ? filtered[0] : {error: true};
 };
 
 export const getTripsForCountry = ({trips}, countryCode) => {
   const filtered = trips.filter(trip => trip.country.code == countryCode);
-
   console.log('filtering trips by countryCode:', countryCode, filtered);
   return filtered.length ? filtered : [{error: true}];
 };
