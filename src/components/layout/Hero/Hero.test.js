@@ -8,8 +8,7 @@ describe('Component Hero', () => {
     //console.log(component.debug());
     expect(component).toBeTruthy();
   });
-  //sa dobre tylko zmniejszam czas na testy
-/*
+
   it('should throw error without required props', () => {
     expect(() => shallow(<Hero />)).toThrow();
   });
@@ -30,5 +29,5 @@ describe('Component Hero', () => {
     expect(component.hasClass('component')).toBe(true);
     expect(component.hasClass('small')).toBe(true);
     expect(component.hasClass('dummy')).toBe(true);
-  }); */
+  });
 });
