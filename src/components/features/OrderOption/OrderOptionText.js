@@ -7,6 +7,8 @@ const OrderOptionText = ({setOptionValue}) => (
     <input
       className={styles.inputSmall}
       type='text'
+      required={true}
+      // w form to tez nie dzialalo, strona sie przeladowuje na klikniecie przycisku, alert nie wyskakuje ze required, event.preventDefault nic nie daje
       onChange={event => setOptionValue(event.currentTarget.value)}
     >
     </input>
