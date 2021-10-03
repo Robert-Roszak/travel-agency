@@ -71,7 +71,9 @@ const Trip = ({error, name, image, cost, days, description, country, intro, trip
         <Row>
           <Col xs={12}>
             <PageTitle text='Trip options' />
-            <OrderFormContainer tripCost={cost} tripCountry={country.name} tripName={name} tripId={tripId} countryCode={country.alpha3Code}/>
+            <form>
+              <OrderFormContainer tripCost={cost} tripCountry={country.name} tripName={name} tripId={tripId} countryCode={country.alpha3Code}/>
+            </form>
           </Col>
         </Row>
       </Grid>

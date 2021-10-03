@@ -9,11 +9,12 @@ import {calculateTotal} from '../../../utils/calculateTotal.js';
 import settings from '../../../data/settings.js';
 import Button from '../../common/Button/Button.js';
 
-const sendOrder = (options, tripCost, tripName, tripCountry, tripId, countryCode) => {
+const sendOrder = (event, options, tripCost, tripName, tripCountry, tripId, countryCode) => {
   const totalCost = formatPrice(calculateTotal(tripCost, options));
   const tripDetails = {totalCost, tripName, tripCountry, tripId, countryCode};
 
   if(options.name && options.contact) {
+    event.preventDefault();
     const payload = {
       ...options,
       tripDetails,
@@ -37,9 +38,7 @@ const sendOrder = (options, tripCost, tripName, tripCountry, tripId, countryCode
         console.log('parsedResponse', parsedResponse);
       });
   }
-  else {
-    alert('Enter your contact info before ordering');
-  }
+  else return;
 };
 
 const OrderForm = ({tripCost, options, setOrderOption, tripName, tripCountry, tripId, countryCode}) => (
@@ -51,7 +50,7 @@ const OrderForm = ({tripCost, options, setOrderOption, tripName, tripCountry, tr
     <Col xs={12}>
       <OrderSummary tripCost={tripCost} options={options}/>
     </Col>
-    <Button onClick={() => sendOrder(options, tripCost, tripName, tripCountry, tripId, countryCode)}>Order now!</Button>
+    <Button onClick={(event) => sendOrder(event, options, tripCost, tripName, tripCountry, tripId, countryCode)}>Order now!</Button>
   </Row>
 );
 
