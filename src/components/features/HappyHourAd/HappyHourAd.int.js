@@ -12,28 +12,7 @@ const mockProps = {
   promo: 'Happy hour!',
 };
 
-beforeAll(() => {
-  const utilsModule = jest.requireActual('../../../utils/formatTime.js');
-  utilsModule.formatTime = jest.fn(seconds => seconds);
-});
-
 describe('Component HappyHourAd', () => {
-  it('HappyHourAd should render without crashing', () => {
-    const component = shallow(<HappyHourAd />);
-    expect(component).toBeTruthy();
-  });
-
-  it('HappyHourAd should render title and promo', () => {
-    const component = shallow(<HappyHourAd />);
-    expect(component.exists(select.title)).toEqual(true);
-    expect(component.exists(select.promo)).toEqual(true);
-  });
-
-  it('HappyHourAd should render header with proper value', () => {
-    const component = shallow(<HappyHourAd {...mockProps} />);
-    expect(component.find(select.title).text()).toEqual(mockProps.title);
-  });
-
   const trueDate = Date;
   const mockDate = customDate => class extends Date {
     constructor(...args) {
@@ -94,15 +73,4 @@ describe('Component HappyHourAd', () => {
     checkDescriptionAfterTime('13:00:00', 60 * 60, 22 * 60 * 60 + '');
   });
 
-  describe('Component HappyHourAd should render promo in between 12:00 and 12:59', () => {
-    checkDescriptionAtTime('12:00:00', mockProps.promo);
-    checkDescriptionAtTime('12:59:59', mockProps.promo);
-    checkDescriptionAtTime('12:30:00', mockProps.promo);
-  });
-
-  describe('Component HappyHourAd should switch to promo on 12:00', () => {
-    checkDescriptionAfterTime('11:59:58', 2, mockProps.promo);
-    checkDescriptionAfterTime('11:59:58', 570, mockProps.promo);
-    checkDescriptionAfterTime('11:59:58', 60 * 60, mockProps.promo);
-  });
 });
