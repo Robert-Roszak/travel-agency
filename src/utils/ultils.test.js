@@ -1,13 +1,4 @@
-import React from 'react';
-import {shallow} from 'enzyme';
 import { formatTime } from './formatTime';
-
-/*
-Czy jeśli podano coś innego niż liczbę, to funkcja zwróci null?
-Czy jeśli podano liczbę mniejszą niż zero, to funkcja zwróci null?
-Czy jeśli podano poprawny argument, to funkcja zwróci dobry czas w formacie hh:mm:ss?
-Czy jeśli godzina, minuta albo sekunda jest mniejsza niż 0, to otrzymuje przedrostek? (ten test możemy połączyć z poprzednim)
-*/
 
 describe('utils', () => {
   describe('formatTime', () => {
