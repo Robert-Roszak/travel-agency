@@ -1,0 +1,13 @@
+@import '../../../styles/settings.scss';
+
+.component {
+  position: relative;
+  text-align: center;
+  color: #fff;
+}
+
+.countdown {
+  position: absolute;
+  width: 100%;
+  top: 40px;
+}
