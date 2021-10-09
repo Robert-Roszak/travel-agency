@@ -47,7 +47,8 @@
 
 .contact {
   text-align: right;
-  span {
+  display: -webkit-box;
+  .ChangingPhoneNumbers {
     padding-left: $base-size;
   }
 }

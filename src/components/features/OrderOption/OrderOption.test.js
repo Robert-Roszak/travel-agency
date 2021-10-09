@@ -8,7 +8,6 @@ describe('Component OrderOption', () => {
     const name = 'title';
     const type = 'dropdown';
     const component = shallow(<OrderOption name={name} type={type}/>);
-    //console.log(component.debug());
     expect(component).toBeTruthy();
   });
 
