@@ -1,1 +1,1 @@
-https://radiant-atoll-29575.herokuapp.com/
+https://travel-agency-solo.herokuapp.com/
